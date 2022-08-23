@@ -9,7 +9,7 @@ router.get("/users", (req, res, next) => {
   User.find({})
     .exec()
     .then((data) => res.json(data))
-    .catch(next);
+    .catch((err) => console.log(err));
 });
 
 router.post("/users", postUser);

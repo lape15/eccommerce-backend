@@ -3,7 +3,9 @@ const User = require("../models/users");
 
 const user = (req, res) => {
   // hash the password
+
   bcrypt
+
     .hash(req.body.password, 10)
     .then((hashedPassword) => {
       // create a new user instance and collect the data
@@ -36,7 +38,7 @@ const user = (req, res) => {
     .catch((e) => {
       console.log(e);
       res.status(500).send({
-        message: "Error creating user",
+        message: "No password was found",
         e,
       });
     });
