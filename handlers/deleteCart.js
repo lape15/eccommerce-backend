@@ -12,7 +12,7 @@ const deleteCart = async (req, res, next) => {
       if (item.quantity == 0) {
         const deleted = await Item.deleteOne({ _id: itemId, owner });
         res.status(200).send("Gone");
-        return console.log({ deleted });
+        return;
       }
       const result = await item.updateOne(
         { quantity: item.quantity },
@@ -22,7 +22,6 @@ const deleteCart = async (req, res, next) => {
       console.log(item, { result });
     } catch (err) {
       res.status(500).send({ message: "Unable to delete cart Item" });
-      console.log(err, "Unable to delete Item");
     }
   }
 };

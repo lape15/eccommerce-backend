@@ -3,6 +3,7 @@ const request = require("supertest");
 const routes = require("../index");
 
 let token = "";
+let itemId = "";
 const req = {
   firstName: "Nurudeen",
   email: "nuru@gmail.com",
@@ -28,11 +29,12 @@ beforeAll(async () => {
   await request(routes).post("/api/users").send(req);
   const response = await request(routes).post("/api/login").send(user);
   token = response.body.token;
-  await request(routes)
+  const res = await request(routes)
     .post("/api/cart")
     .set("Authorization", `Bearer ${token}`)
     .expect("Content-Type", /json/)
     .send(item);
+  itemId = res.body.result._id;
 });
 
 describe("Cart item handler", () => {
@@ -66,5 +68,38 @@ describe("Cart item handler", () => {
       .send(item);
     expect(res.statusCode).toBe(200);
     expect(res.body.message).toBe("Cart Updated");
+  });
+
+  it("Reduces the quantiy of a cart item by 1 whenevr cart item is reduced", async () => {
+    const item = {
+      name: "Red Dress",
+      imageUrl: "https://i.ibb.co/XzcwL5s/black-shearling.png",
+      price: 3,
+      quantity: 8,
+      id: itemId,
+    };
+    const res = await request(routes)
+      .delete("/api/cart")
+      .set("Authorization", `Bearer ${token}`)
+      .expect("Content-Type", /json/)
+      .send(item);
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("Deleted");
+  });
+  it.skip("Delete the item from the database if its just quantity left", async () => {
+    const item = {
+      name: "Red Dress",
+      imageUrl: "https://i.ibb.co/XzcwL5s/black-shearling.png",
+      price: 3,
+      quantity: 8,
+      id: itemId,
+    };
+    const res = await request(routes)
+      .delete("/api/cart")
+      .set("Authorization", `Bearer ${token}`)
+      .expect("Content-Type", /json/)
+      .send(item);
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("Deleted");
   });
 });

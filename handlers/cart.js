@@ -26,6 +26,7 @@ const cart = async (req, res, next) => {
       .then((result) => {
         res.status(200).send({
           message: "Item Added",
+          result,
         });
         User.findOne({ _id: result.owner }).populate("User");
       })
