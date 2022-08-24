@@ -5,6 +5,7 @@ const auth = require("../auth");
 const postUser = require("../handlers/user");
 const login = require("../handlers/login");
 const cart = require("../handlers/cart");
+const deleteCart = require("../handlers/deleteCart");
 
 router.get("/users", (req, res, next) => {
   User.find({})
@@ -28,5 +29,5 @@ router.get("/auth-endpoint", auth, (req, res) => {
 });
 
 router.post("/cart", auth, cart);
-
+router.delete("/cart", auth, deleteCart);
 module.exports = router;

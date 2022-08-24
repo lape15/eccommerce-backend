@@ -5,7 +5,8 @@ const cart = async (req, res, next) => {
   if (req.body) {
     const item = req.body;
     item.owner = req.user.userId;
-    const oldItem = await Item.findOne({ name: item.name });
+    const oldItem = await Item.findOne({ name: item.name, owner: item.owner });
+
     if (oldItem) {
       try {
         const result = await oldItem.updateOne(

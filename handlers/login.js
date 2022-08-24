@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const Item = require("../models/cartItem");
 
 const login = (req, res) => {
-  console.log({ req });
   User.findOne({ email: req.body.email })
 
     // if email exists

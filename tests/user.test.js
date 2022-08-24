@@ -2,21 +2,12 @@ const request = require("supertest");
 
 const routes = require("../index");
 
-const db = require("../db");
-
 beforeAll(async () => {
   console.log("connect");
 });
 
 describe("Test user handlers", () => {
-  console.log(process.env.NODE_ENV);
   it("creates user when the endpoint is called and passed the right payload", async () => {
-    const req = {
-      body: {
-        email: "nuru@gmail.com",
-        password: "snoopilngirl",
-      },
-    };
     const res = await request(routes).get("/api/users");
     expect(res.statusCode).toBe(200);
   });
