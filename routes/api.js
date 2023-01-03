@@ -6,6 +6,9 @@ const postUser = require("../handlers/user");
 const login = require("../handlers/login");
 const cart = require("../handlers/cart");
 const deleteCart = require("../handlers/deleteCart");
+var passport = require("passport");
+var GoogleStrategy = require("passport-google-oidc");
+const passport = require("passport");
 
 router.get("/users", (req, res, next) => {
   User.find({})
@@ -30,4 +33,11 @@ router.get("/auth-endpoint", auth, (req, res) => {
 
 router.post("/cart", auth, cart);
 router.delete("/cart", auth, deleteCart);
+router.get("/login/federated/google", (res, req) => {
+  passport.authenticate("google");
+  req.status(200).send({
+    message: "ok",
+  });
+});
+
 module.exports = router;

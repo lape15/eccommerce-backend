@@ -23,6 +23,8 @@
     "mongodb-memory-server": "^8.9.0",
     "mongoose": "^6.5.1",
     "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-google-oidc": "^0.1.0",
     "prettier": "^2.7.1",
     "supertest": "^6.2.4"
   },
