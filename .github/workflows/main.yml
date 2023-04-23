@@ -1,0 +1,14 @@
+name: ecommerce-backend
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+        run:  yarn install
+      - name: Run tests
+        run:  yarn test
