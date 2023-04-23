@@ -2,6 +2,7 @@ const User = require("../models/users");
 const Item = require("../models/cartItem");
 
 const cart = async (req, res, next) => {
+  console.log({ req });
   if (req.body) {
     const item = req.body;
     item.owner = req.user.userId;
