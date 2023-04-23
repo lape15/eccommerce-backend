@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v1
       - name: Install dependencies
         run: yarn install
-        working-directory: ././package.json
+        working-directory: package.json
       - name: Run tests
         run: yarn test
-        working-directory: ././package.json
+        working-directory: package.json
