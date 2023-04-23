@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install
-        working-directory: /home/runner/work/eccommerce-backend/package.json
+        working-directory: /home/runner/work/eccommerce-backend/eccommerce-backend/package.json
       - name: Run tests
         run: yarn test
-        working-directory: /home/runner/work/eccommerce-backend/package.json
+        working-directory: /home/runner/work/eccommerce-backend/eccommerce-backend/package.json
