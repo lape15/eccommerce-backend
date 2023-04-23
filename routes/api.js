@@ -6,8 +6,6 @@ const postUser = require("../handlers/user");
 const login = require("../handlers/login");
 const cart = require("../handlers/cart");
 const deleteCart = require("../handlers/deleteCart");
-var passport = require("passport");
-var GoogleStrategy = require("passport-google-oidc");
 const passport = require("passport");
 
 router.get("/users", (req, res, next) => {
